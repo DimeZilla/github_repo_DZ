@@ -29,7 +29,6 @@ def get_data(series_id, start_year, end_year):
 	response = urlopen(req).read()
 	decoded_response = json.loads(response.decode())
 	results = decoded_response["Results"]
-	return results
 
 	def format_results(results):
 		dump = results["series"][0]["data"]
@@ -39,8 +38,11 @@ def get_data(series_id, start_year, end_year):
 		for i in list(enumerate(dump)):
 			measure.append(i[0])
 
-
+		print "PeriodName | Year | Value"	
 		for i in measure:
-			print dump[i]["periodName"]
-			print dump[i]["year"]
-			print dump[i]["value"]
+			print "{0} | {1} | {2} ".format(dump[i]["periodName"],dump[i]["year"],dump[i]["value"] ) 
+
+
+	formatted_data = format_results(results)
+	return formatted_data
+
