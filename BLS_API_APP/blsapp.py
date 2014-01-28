@@ -30,7 +30,6 @@
 # HAVE A FUN TIME LEARNING PYTHON!
  
 
-
 #get geo dictionary
 from series_id_dict import state_fips
 from api import get_data
@@ -41,10 +40,7 @@ print "Let's Get unemployment data from teh last three years."
 
 def get_seriesid():
 
-	#In the future, we will build out the program to allow for county level choice
-
-	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
-	print "Warning: county level data is only available as unseasonally adjusted."	
+	
 
 	def get_adjustment():
 		choose_seasonaladjustment = raw_input("Type 's' or 'u' > ")
@@ -60,6 +56,7 @@ def get_seriesid():
 	
 	
 
+	
 	def get_state():
 		choose_state = raw_input("Type a state name > ")
 		if choose_state in state_fips:
@@ -70,17 +67,12 @@ def get_seriesid():
 			get_state()
 
 
+	#In the future, we will build out the program to allow for county level choice		
 	def get_countyFIPS():
 		#when we input county choices we will make this a conditional
 		pass
 
-	print "Choose which type of data you want."
-	print """
-			Labor Force
-			Employment
-			Unemployment
-			Unemployment Rate
-			"""
+	
 
 	def get_measurecode():
 		#when we learn more about the last parts we will make this a conditional
@@ -102,8 +94,18 @@ def get_seriesid():
 			get_measurecode()
 	
 	level = "ST"
+	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
+	print "Warning: county level data is only available as unseasonally adjusted."	
 	seasonal_adj = get_adjustment()
+	print "Choose which state you want to Get Data for."
 	state_code = get_state()
+	print "Choose which type of data you want."
+	print """
+			Labor Force
+			Employment
+			Unemployment
+			Unemployment Rate
+			"""
 	measure_code = get_measurecode()
 
 	# the "000" will have to be modified when we add county level choices

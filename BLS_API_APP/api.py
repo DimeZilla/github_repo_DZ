@@ -31,3 +31,16 @@ def get_data(series_id, start_year, end_year):
 	results = decoded_response["Results"]
 	return results
 
+	def format_results(results):
+		dump = results["series"][0]["data"]
+		ptest = dump[0]["footnotes"][0]["code"] ## Will equal "P"
+
+		measure = list()
+		for i in list(enumerate(dump)):
+			measure.append(i[0])
+
+
+		for i in measure:
+			print dump[i]["periodName"]
+			print dump[i]["year"]
+			print dump[i]["value"]
