@@ -38,84 +38,61 @@ import datetime
 
 print "Let's Get unemployment data from teh last three years."
 
-def get_seriesid():
+def get_adjustment():
+	choose_seasonaladjustment = raw_input("Type 's' or 'u' > ")
+	if choose_seasonaladjustment[0].lower() == 's':
+		seasonal_adj = 'S'
+		return seasonal_adj
+	elif choose_seasonaladjustment[0].lower() == 'u':
+		seasonal_adj = 'U'
+		return seasonal_adj
+	else:
+		print "invalid adjustment input"
+		get_adjustment()
+	
+	
+def decide_state():
+	state = raw_input("Type the whole state > ")
+	return state
+
+def get_state(state):
+	if state in state_fips:
+		state_code = state_fips[state]
+		return state_code
+	else:
+		print "invalid state" 
+		decide_state()
+
+
+#In the future, we will build out the program to allow for county level choice		
+def get_countyFIPS():
+	#when we input county choices we will make this a conditional
+	pass
 
 	
 
-	def get_adjustment():
-		choose_seasonaladjustment = raw_input("Type 's' or 'u' > ")
-		if choose_seasonaladjustment[0].lower() == 's':
-			seasonal_adj = 'S'
-			return seasonal_adj
-		elif choose_seasonaladjustment[0].lower() == 'u':
-			seasonal_adj = 'U'
-			return seasonal_adj
-		else:
-			print "invalid adjustment input"
-			get_adjustment()
-	
-	
-
-	
-	def get_state():
-		choose_state = raw_input("Type a state name > ")
-		if choose_state in state_fips:
-			state_code = state_fips[choose_state]
-			return state_code
-		else:
-			print "invalid state" 
-			get_state()
+def get_measurecode():
+	#when we learn more about the last parts we will make this a conditional
+	choose_measurecode = raw_input("Type the data type > ")
+	if choose_measurecode.lower() == "labor force":
+		measure_code = "0000000006"
+		return measure_code
+	elif choose_measurecode.lower() == "employment":
+		measure_code = "0000000005"
+		return measure_code
+	elif choose_measurecode.lower() == "unemployment":
+		measure_code = "0000000004"
+		return measure_code
+	elif choose_measurecode.lower() == "unemployment rate":
+		measure_code = "0000000003"
+		return measure_code
+	else:
+		print "Invalid data input"
+		get_measurecode()	
 
 
-	#In the future, we will build out the program to allow for county level choice		
-	def get_countyFIPS():
-		#when we input county choices we will make this a conditional
-		pass
 
-	
-
-	def get_measurecode():
-		#when we learn more about the last parts we will make this a conditional
-		choose_measurecode = raw_input("Type the data type > ")
-		if choose_measurecode.lower() == "labor force":
-			measure_code = "0000000006"
-			return measure_code
-		elif choose_measurecode.lower() == "employment":
-			measure_code = "0000000005"
-			return measure_code
-		elif choose_measurecode.lower() == "unemployment":
-			measure_code = "0000000004"
-			return measure_code
-		elif choose_measurecode.lower() == "unemployment rate":
-			measure_code = "0000000003"
-			return measure_code
-		else:
-			print "Invalid data input"
-			get_measurecode()
-	
-	level = "ST"
-	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
-	print "Warning: county level data is only available as unseasonally adjusted."	
-	seasonal_adj = get_adjustment()
-	print "Choose which state you want to Get Data for."
-	state_code = get_state()
-	print "Choose which type of data you want."
-	print """
-			Labor Force
-			Employment
-			Unemployment
-			Unemployment Rate
-			"""
-	measure_code = get_measurecode()
-
-	# the "000" will have to be modified when we add county level choices
-	series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
-	return series_id		
-
-
-thisyear = datetime.datetime.today().year
-
-def choose_startyear():
+def choose_startyear(thisyear):
 	choose_start = raw_input("Choose a startyear > ")
 	if len(choose_start) != 4:
 		print "invaid year"
@@ -127,8 +104,6 @@ def choose_startyear():
 	else:	
 		start_year = choose_start
 		return start_year
-
-
 
 def choose_endyear():
 	choose_end = raw_input("Choose a end year > ")
@@ -144,12 +119,31 @@ def choose_endyear():
 		return end_year
 
 
+thisyear = datetime.datetime.today().year
+level = "ST"
+
+print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
+print "Warning: county level data is only available as unseasonally adjusted."	
+seasonal_adj = get_adjustment()
+print "Choose which state you want to Get Data for."
+state = decide_state()
+state_code = get_state(state)
+print "Choose which type of data you want."
+print """
+		Labor Force
+		Employment
+		Unemployment
+		Unemployment Rate
+"""
+measure_code = get_measurecode()
 # Lets Party like we're an unemployment stat!
-series_id = get_seriesid()
-start_year = choose_startyear()
+start_year = choose_startyear(thisyear)
 end_year = choose_endyear()
 
+
+# the "000" will have to be modified when we add county level choices
+series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
 #Get API call and retrieve data
 from api import get_data
-apidata = get_data(series_id,start_year,end_year)
+apidata = get_data(series_id,start_year,end_year, state)
 print apidata

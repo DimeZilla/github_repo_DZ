@@ -4,10 +4,13 @@
 		# B. county
 	#	Return results 
 	
-def get_data(series_id, start_year, end_year):
+def get_data(series_id, start_year, end_year, state):
 	from urllib2 import Request, urlopen
 	from urllib import urlencode
 	import json
+	#this requires the python tabulate package
+	# simply run on your command line terminal 'pip install tabulate'
+	from tabulate import tabulate 
 
 
 	# BLS api url
@@ -29,20 +32,19 @@ def get_data(series_id, start_year, end_year):
 	response = urlopen(req).read()
 	decoded_response = json.loads(response.decode())
 	results = decoded_response["Results"]
-
-	def format_results(results):
+	
+	def format_results(results, state):
 		dump = results["series"][0]["data"]
 		ptest = dump[0]["footnotes"][0]["code"] ## Will equal "P"
+		
+		formatted = list()
+		formatted.append(["State","Month","Year","Value"])	
+		for i in range(len(dump)-1,-1,-1):
+			formatted.append([state,str(dump[i]["periodName"]), str(dump[i]["year"]), str(dump[i]["value"])])
 
-		measure = list()
-		for i in list(enumerate(dump)):
-			measure.append(i[0])
-
-		print "PeriodName | Year | Value"	
-		for i in measure:
-			print "{0} | {1} | {2} ".format(dump[i]["periodName"],dump[i]["year"],dump[i]["value"] ) 
+		return formatted
 
 
-	formatted_data = format_results(results)
-	return formatted_data
-
+	formatted = format_results(results, state)
+	print tabulate(formatted)
+	
