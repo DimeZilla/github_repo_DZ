@@ -31,12 +31,10 @@
  
 
 #get geo dictionary
-from series_id_dict import state_fips
-from api import get_data
-import datetime
+
 # 1. Create conditionals for setting api variables.
 
-print "Let's Get unemployment data from teh last three years."
+print "Let's Get unemployment data!"
 
 def get_adjustment():
 	choose_seasonaladjustment = raw_input("Type 's' or 'u' > ")
@@ -56,6 +54,7 @@ def decide_state():
 	return state
 
 def get_state(state):
+	from series_id_dict import state_fips
 	if state in state_fips:
 		state_code = state_fips[state]
 		return state_code
@@ -88,11 +87,13 @@ def get_measurecode():
 		return measure_code
 	else:
 		print "Invalid data input"
-		get_measurecode()	
+		measure_code = get_measurecode()	
 
 
 
-def choose_startyear(thisyear):
+def choose_startyear():
+	import datetime
+	thisyear = datetime.datetime.today().year
 	choose_start = raw_input("Choose a startyear > ")
 	if len(choose_start) != 4:
 		print "invaid year"
@@ -106,6 +107,8 @@ def choose_startyear(thisyear):
 		return start_year
 
 def choose_endyear():
+	import datetime
+	thisyear = datetime.datetime.today().year
 	choose_end = raw_input("Choose a end year > ")
 	if len(choose_end) != 4:
 		print "invaid year"
@@ -119,31 +122,49 @@ def choose_endyear():
 		return end_year
 
 
-thisyear = datetime.datetime.today().year
-level = "ST"
 
-print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
-print "Warning: county level data is only available as unseasonally adjusted."	
-seasonal_adj = get_adjustment()
-print "Choose which state you want to Get Data for."
-state = decide_state()
-state_code = get_state(state)
-print "Choose which type of data you want."
-print """
+#Start Engines
+def start()	:
+	from api import get_data
+	choose_level = raw_input("Type National or State > ")
+	
+	if choose_level[0].lower() == "s":
+		level = "ST"
+		print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
+		print "Warning: county level data is only available as unseasonally adjusted."	
+		seasonal_adj = get_adjustment()
+		print "Choose which state you want to Get Data for."
+		state = decide_state()
+		state_code = get_state(state)
+		print "Choose which type of data you want."
+		print """
 		Labor Force
 		Employment
 		Unemployment
 		Unemployment Rate
-"""
-measure_code = get_measurecode()
+		"""
+		measure_code = get_measurecode()
+		series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
+	elif choose_level[0].lower() == 'n':
+		series_id = "LNS14000000"
+		print "As of now, national data through this program is only unseasonally adjusted"
+		state = "National"
+	else:
+		print "Invalid Input please, try again"
+		start()
+	
+	#set start and end years
+	start_year = choose_startyear()
+	end_year = choose_endyear()
+
+
+	# the "000" will have to be modified when we add county level choices
+	#Get API call and retrieve data
+	from api import get_data
+	apidata = get_data(series_id,start_year,end_year, state)
+	print apidata
+
 # Lets Party like we're an unemployment stat!
-start_year = choose_startyear(thisyear)
-end_year = choose_endyear()
-
-
-# the "000" will have to be modified when we add county level choices
-series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
-#Get API call and retrieve data
-from api import get_data
-apidata = get_data(series_id,start_year,end_year, state)
-print apidata
+print "Welcome to the unemployment stats program!"
+print "To begin, do you want the national unemployment rate or the state unemployment rate?"
+start()
