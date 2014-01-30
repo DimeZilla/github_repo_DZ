@@ -157,5 +157,4 @@ def start()	:
 
 # Lets Party like we're an unemployment stat!
 print "Welcome to the unemployment stats program!"
-print "To begin, do you want the national unemployment rate or the state unemployment rate?"
 start()
