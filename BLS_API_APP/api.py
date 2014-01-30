@@ -3,18 +3,22 @@
 		# A. State
 		# B. county
 	#	Return results 
+
+from ggplot import *
+from pandas import *
+
+# series_id = 'LASST010000000000003'
+# start_year = '2013'
+# end_year = '2013'
+# state = 'Alabama'
 	
 def get_data(series_id, start_year, end_year, state):
 	from urllib2 import Request, urlopen
 	from urllib import urlencode
 	import json
-	#this requires the python tabulate package
-	# simply run on your command line terminal 'pip install tabulate'
-	from tabulate import tabulate 
-
+	
 
 	# BLS api url
-
 	url = 'http://api.bls.gov/publicAPI/v1/timeseries/data/'
 	# Set header to pass to bls api
 	headers = {"Content-Type": "application/json"}
@@ -35,16 +39,26 @@ def get_data(series_id, start_year, end_year, state):
 	
 	def format_results(results, state):
 		dump = results["series"][0]["data"]
-		ptest = dump[0]["footnotes"][0]["code"] ## Will equal "P"
+		# ptest = dump[0]["footnotes"][0]["code"] - will eventually use to exclue preliminary data
 		
-		formatted = list()
-		formatted.append(["State","Month","Year","Value"])	
+		#format returned data into a dictionary
+		formatted = {'Order':list(), 'State': list(), 'Value': list(), 'Month, Year': list()}
 		for i in range(len(dump)-1,-1,-1):
-			formatted.append([state,str(dump[i]["periodName"]), str(dump[i]["year"]), str(dump[i]["value"])])
+			formatted['State'].append(state)
+			formatted['Value'].append(dump[i]["value"])
+			formatted['Month, Year'].append(dump[i]["periodName"]+", "+dump[i]["year"])
+		
+		#set ordinal column for plotting
+		for i in range(len(dump)):
+			formatted['Order'].append(i)
 
 		return formatted
 
 
-	formatted = format_results(results, state)
-	print tabulate(formatted)
-	
+	formatted = DataFrame(format_results(results,state))
+	print ggplot(aes(x='Order', y='Value'), data=formatted) + \
+    	geom_line(color='green') + \
+    	geom_point(color='black') + \
+    	ggtitle("Unemployment Data") + \
+    	xlab("Month, Year") + \
+    	ylab("Value")

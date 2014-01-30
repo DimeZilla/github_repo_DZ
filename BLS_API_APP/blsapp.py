@@ -126,32 +126,23 @@ def choose_endyear():
 #Start Engines
 def start()	:
 	from api import get_data
-	choose_level = raw_input("Type National or State > ")
-	
-	if choose_level[0].lower() == "s":
-		level = "ST"
-		print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
-		print "Warning: county level data is only available as unseasonally adjusted."	
-		seasonal_adj = get_adjustment()
-		print "Choose which state you want to Get Data for."
-		state = decide_state()
-		state_code = get_state(state)
-		print "Choose which type of data you want."
-		print """
-		Labor Force
-		Employment
-		Unemployment
-		Unemployment Rate
-		"""
-		measure_code = get_measurecode()
-		series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
-	elif choose_level[0].lower() == 'n':
-		series_id = "LNS14000000"
-		print "As of now, national data through this program is only unseasonally adjusted"
-		state = "National"
-	else:
-		print "Invalid Input please, try again"
-		start()
+
+	level = "ST"
+	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
+	print "Warning: county level data is only available as unseasonally adjusted."	
+	seasonal_adj = get_adjustment()
+	print "Choose which state you want to Get Data for."
+	state = decide_state()
+	state_code = get_state(state)
+	print "Choose which type of data you want."
+	print """
+	Labor Force
+	Employment
+	Unemployment
+	Unemployment Rate
+	"""
+	measure_code = get_measurecode()
+	series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
 	
 	#set start and end years
 	start_year = choose_startyear()
