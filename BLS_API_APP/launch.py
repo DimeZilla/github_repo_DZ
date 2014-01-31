@@ -1,22 +1,24 @@
-print "Welcome to the unemployment stats program!"
-print "Let's get some unemployment data!"
 
-import blsapp as bp 
+# Lets Party like we're an unemployment stat!
 
-# Lets get this sucker started!
+class launch():
+	
+	import value_functions as vf
+	# global state, seasonal_adj, measure_code, series_id, start_year, end_year, apidata
 
-def launch(): 
-	data = bp.start()
-	bp.data_output(data)
+	def __init__(self):
+		self = self
+	#choose state
+		
+	#set start and end years
+	def get_start_year():
+		
+	
+	def get_end_year():	
+		
+		return end_year
 
-	print "Would you like to find another state's unemployment data?"
+	# the "000" will have to be modified when we add county level choices
+	#Get API call and retrieve data
+	
 
-	choose_continue = raw_input("Type yes or no > ")
-	if choose_continue[0].lower() == "y":
-		print "Alright lets continue."
-		launch()
-	elif choose_continue[0].lower == "n":
-		print "Thank you! Goodbye"
-		exit()
-
-launch()

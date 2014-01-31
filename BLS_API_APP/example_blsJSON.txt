@@ -1,0 +1,63 @@
+[{u'footnotes': [{u'text': u'Preliminary.', u'code': u'P'}], u'periodName': u'December', u'period': u'M12', u'value': u'
+6.1', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u'November', u'period': u'M11', u'value': u'6.2', u'year':
+u'2013'}, {u'footnotes': [{}], u'periodName': u'October', u'period': u'M10', u'value': u'6.4', u'year': u'2013'}, {u'foo
+tnotes': [{}], u'periodName': u'September', u'period': u'M09', u'value': u'6.4', u'year': u'2013'}, {u'footnotes': [{}],
+ u'periodName': u'August', u'period': u'M08', u'value': u'6.2', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u
+'July', u'period': u'M07', u'value': u'6.2', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u'June', u'period':
+u'M06', u'value': u'6.5', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u'May', u'period': u'M05', u'value': u'
+6.8', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u'April', u'period': u'M04', u'value': u'6.9', u'year': u'2
+013'}, {u'footnotes': [{}], u'periodName': u'March', u'period': u'M03', u'value': u'7.2', u'year': u'2013'}, {u'footnote
+s': [{}], u'periodName': u'February', u'period': u'M02', u'value': u'7.2', u'year': u'2013'}, {u'footnotes': [{}], u'per
+iodName': u'January', u'period': u'M01', u'value': u'6.9', u'year': u'2013'}, {u'footnotes': [{}], u'periodName': u'Dece
+mber', u'period': u'M12', u'value': u'6.8', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'November', u'period
+': u'M11', u'value': u'6.9', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'October', u'period': u'M10', u'val
+ue': u'7.1', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'September', u'period': u'M09', u'value': u'7.3', u
+'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'August', u'period': u'M08', u'value': u'7.5', u'year': u'2012'},
+ {u'footnotes': [{}], u'periodName': u'July', u'period': u'M07', u'value': u'7.6', u'year': u'2012'}, {u'footnotes': [{}
+], u'periodName': u'June', u'period': u'M06', u'value': u'7.6', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u
+'May', u'period': u'M05', u'value': u'7.5', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'April', u'period':
+u'M04', u'value': u'7.4', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'March', u'period': u'M03', u'value':
+u'7.2', u'year': u'2012'}, {u'footnotes': [{}], u'periodName': u'February', u'period': u'M02', u'value': u'7.2', u'year'
+: u'2012'}, {u'footnotes': [{}], u'periodName': u'January', u'period': u'M01', u'value': u'7.3', u'year': u'2012'}, {u'f
+ootnotes': [{}], u'periodName': u'December', u'period': u'M12', u'value': u'7.5', u'year': u'2011'}, {u'footnotes': [{}]
+, u'periodName': u'November', u'period': u'M11', u'value': u'7.8', u'year': u'2011'}, {u'footnotes': [{}], u'periodName'
+: u'October', u'period': u'M10', u'value': u'8.2', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'September',
+u'period': u'M09', u'value': u'8.5', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'August', u'period': u'M08'
+, u'value': u'8.8', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'July', u'period': u'M07', u'value': u'8.9',
+ u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'June', u'period': u'M06', u'value': u'9.0', u'year': u'2011'},
+ {u'footnotes': [{}], u'periodName': u'May', u'period': u'M05', u'value': u'9.0', u'year': u'2011'}, {u'footnotes': [{}]
+, u'periodName': u'April', u'period': u'M04', u'value': u'9.0', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u
+'March', u'period': u'M03', u'value': u'9.0', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'February', u'peri
+od': u'M02', u'value': u'9.1', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'January', u'period': u'M01', u'v
+alue': u'9.1', u'year': u'2011'}, {u'footnotes': [{}], u'periodName': u'December', u'period': u'M12', u'value': u'9.1',
+u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'November', u'period': u'M11', u'value': u'9.0', u'year': u'2010
+'}, {u'footnotes': [{}], u'periodName': u'October', u'period': u'M10', u'value': u'8.9', u'year': u'2010'}, {u'footnotes
+': [{}], u'periodName': u'September', u'period': u'M09', u'value': u'8.8', u'year': u'2010'}, {u'footnotes': [{}], u'per
+iodName': u'August', u'period': u'M08', u'value': u'8.8', u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'July'
+, u'period': u'M07', u'value': u'8.8', u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'June', u'period': u'M06'
+, u'value': u'8.9', u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'May', u'period': u'M05', u'value': u'9.2',
+u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'April', u'period': u'M04', u'value': u'9.4', u'year': u'2010'},
+ {u'footnotes': [{}], u'periodName': u'March', u'period': u'M03', u'value': u'10.1', u'year': u'2010'}, {u'footnotes': [
+{}], u'periodName': u'February', u'period': u'M02', u'value': u'10.3', u'year': u'2010'}, {u'footnotes': [{}], u'periodN
+ame': u'January', u'period': u'M01', u'value': u'10.4', u'year': u'2010'}, {u'footnotes': [{}], u'periodName': u'Decembe
+r', u'period': u'M12', u'value': u'10.5', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'November', u'period':
+ u'M11', u'value': u'10.5', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'October', u'period': u'M10', u'valu
+e': u'10.5', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'September', u'period': u'M09', u'value': u'10.5',
+u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'August', u'period': u'M08', u'value': u'10.4', u'year': u'2009'
+}, {u'footnotes': [{}], u'periodName': u'July', u'period': u'M07', u'value': u'10.3', u'year': u'2009'}, {u'footnotes':
+[{}], u'periodName': u'June', u'period': u'M06', u'value': u'10.1', u'year': u'2009'}, {u'footnotes': [{}], u'periodName
+': u'May', u'period': u'M05', u'value': u'9.8', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'April', u'perio
+d': u'M04', u'value': u'9.5', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'March', u'period': u'M03', u'valu
+e': u'9.1', u'year': u'2009'}, {u'footnotes': [{}], u'periodName': u'February', u'period': u'M02', u'value': u'8.6', u'y
+ear': u'2009'}, {u'footnotes': [{}], u'periodName': u'January', u'period': u'M01', u'value': u'7.9', u'year': u'2009'},
+{u'footnotes': [{}], u'periodName': u'December', u'period': u'M12', u'value': u'7.2', u'year': u'2008'}, {u'footnotes':
+[{}], u'periodName': u'November', u'period': u'M11', u'value': u'6.5', u'year': u'2008'}, {u'footnotes': [{}], u'periodN
+ame': u'October', u'period': u'M10', u'value': u'5.9', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'Septembe
+r', u'period': u'M09', u'value': u'5.4', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'August', u'period': u'
+M08', u'value': u'5.1', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'July', u'period': u'M07', u'value': u'4
+.9', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'June', u'period': u'M06', u'value': u'4.7', u'year': u'200
+8'}, {u'footnotes': [{}], u'periodName': u'May', u'period': u'M05', u'value': u'4.4', u'year': u'2008'}, {u'footnotes':
+[{}], u'periodName': u'April', u'period': u'M04', u'value': u'4.2', u'year': u'2008'}, {u'footnotes': [{}], u'periodName
+': u'March', u'period': u'M03', u'value': u'4.1', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'February', u'
+period': u'M02', u'value': u'3.9', u'year': u'2008'}, {u'footnotes': [{}], u'periodName': u'January', u'period': u'M01',
+ u'value': u'3.8', u'year': u'2008'}]

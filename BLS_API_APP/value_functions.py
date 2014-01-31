@@ -25,19 +25,13 @@ def decide_state():
 		state = decide_state()
 		return state
 
-def get_state(state):
-	state_code = state_fips[state]
-	return state_code
-	
 
-
-#In the future, we will build out the program to allow for county level choice		
+	#In the future, we will build out the program to allow for county level choice		
 def get_countyFIPS():
 	#when we input county choices we will make this a conditional
 	pass
 
 	
-
 def get_measurecode():
 	#when we learn more about the last parts we will make this a conditional
 	choose_measurecode = raw_input("Type the data type > ")
@@ -94,4 +88,23 @@ def choose_endyear():
 		end_year = choose_end
 		return end_year
 
+def get_charttitle(state, measure_code, start_year, end_year):
+	if start_year == end_year:
+		timeseries = start_year
+	else:
+		timeseries = start_year +"-" + end_year
 
+	if measure_code == "0000000006":
+		chart_title = state + " " + "Labor Force" + " " + timeseries 
+		return chart_title
+	elif measure_code == "0000000005":
+		chart_title = state + " " + "Employment" + " " + timeseries 
+		return chart_title
+	elif measure_code == "0000000004":
+		chart_title = state + " " + "Unemployment" + " " + timeseries
+		return measure_code
+	elif measure_code == "0000000003":
+		chart_title = state + " " + "Unemployment Rate" + " " + timeseries
+		return chart_title
+	else:
+		pass
