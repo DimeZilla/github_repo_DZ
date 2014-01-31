@@ -4,8 +4,8 @@
 		# B. county
 	#	Return results 
 
-from ggplot import *
-from pandas import *
+from pandas import DataFrame
+from series_id_dict import month_series
 
 # series_id = 'LASST010000000000003'
 # start_year = '2013'
@@ -42,23 +42,23 @@ def get_data(series_id, start_year, end_year, state):
 		# ptest = dump[0]["footnotes"][0]["code"] - will eventually use to exclue preliminary data
 		
 		#format returned data into a dictionary
-		formatted = {'Order':list(), 'State': list(), 'Value': list(), 'Month, Year': list()}
+		formatted = {'Index_order':list(), 'State': list(), 'Value': list(), 'Month, Year': list()}
 		for i in range(len(dump)-1,-1,-1):
 			formatted['State'].append(state)
 			formatted['Value'].append(dump[i]["value"])
-			formatted['Month, Year'].append(dump[i]["periodName"]+", "+dump[i]["year"])
+			formatted['Month, Year'].append(month_series[dump[i]["periodName"]]+"/"+dump[i]["year"])
 		
 		#set ordinal column for plotting
 		for i in range(len(dump)):
-			formatted['Order'].append(i)
+			formatted['Index_order'].append(i)
 
 		return formatted
 
 
-	formatted = DataFrame(format_results(results,state))
-	print ggplot(aes(x='Order', y='Value'), data=formatted) + \
-    	geom_line(color='green') + \
-    	geom_point(color='black') + \
-    	ggtitle("Unemployment Data") + \
-    	xlab("Month, Year") + \
-    	ylab("Value")
+	formatted = DataFrame(format_results(results,state))	
+
+
+	
+
+	return formatted
+    	

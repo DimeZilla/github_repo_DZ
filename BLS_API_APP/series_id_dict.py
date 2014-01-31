@@ -46,3 +46,6 @@ county_fips = {}
 
 time_series = ('2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011',
 		'2012','2013','2014')
+
+month_series = {'January': '01', 'February': '02', 'March': '03', 'April': '04', 'May': '05', 'June': '06', 'July': '07', 'August': '08', 
+	'September':'09', 'October':'10','November':'11','December':'12'}

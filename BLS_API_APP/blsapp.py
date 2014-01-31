@@ -1,139 +1,24 @@
-# This is a side project
-		## Defining API Call ##
-#OBJECTIVE: Defining whether or not to get unemployment data by state or by county
-# All unemployment data will be non-seasonally adjusted
-
-#	1. Create conditionals for selecting api variables
-		# A. State
-			# Which state
-		# B. County
-			# Which state
 
 
-		## Connecting to the BLS data and retrieving results ##
-#OBJCTIVE: Connect to the API based off of the user selections and retrieve data.
+from api import get_data
+import value_functions as vf
 
 
-		# Visualizing Results
-#OBJECTIVE: display the api results in a user-friendly way with options for
-#exporting to csv, mapping, charting
-#	4. Format Results in a user formatted way
-		# - allow for export to csv
-#	5. Map results by county or national results
-# 	6. Chart results along a time seriese
-#	7. scatter plot averages by month regardless of year
-#	8. histogram of average for that month regardless of year
-#	9. Labor Force / Total Pop
+# Lets Party like we're an unemployment stat!
 
-# MAKE THIS DATA ALL FREE ON YOUR WEBSITE
-	# MAKE MONEY ADVERTISING - GOTTA LIVE AFTER GETTING FIRED FROM JOB
-# HAVE A FUN TIME LEARNING PYTHON!
- 
-
-#get geo dictionary
-
-# 1. Create conditionals for setting api variables.
-
-print "Let's Get unemployment data!"
-
-def get_adjustment():
-	choose_seasonaladjustment = raw_input("Type 's' or 'u' > ")
-	if choose_seasonaladjustment[0].lower() == 's':
-		seasonal_adj = 'S'
-		return seasonal_adj
-	elif choose_seasonaladjustment[0].lower() == 'u':
-		seasonal_adj = 'U'
-		return seasonal_adj
-	else:
-		print "invalid adjustment input"
-		get_adjustment()
-	
-	
-def decide_state():
-	state = raw_input("Type the whole state > ")
-	return state
-
-def get_state(state):
-	from series_id_dict import state_fips
-	if state in state_fips:
-		state_code = state_fips[state]
-		return state_code
-	else:
-		print "invalid state" 
-		decide_state()
-
-
-#In the future, we will build out the program to allow for county level choice		
-def get_countyFIPS():
-	#when we input county choices we will make this a conditional
-	pass
-
-	
-
-def get_measurecode():
-	#when we learn more about the last parts we will make this a conditional
-	choose_measurecode = raw_input("Type the data type > ")
-	if choose_measurecode.lower() == "labor force":
-		measure_code = "0000000006"
-		return measure_code
-	elif choose_measurecode.lower() == "employment":
-		measure_code = "0000000005"
-		return measure_code
-	elif choose_measurecode.lower() == "unemployment":
-		measure_code = "0000000004"
-		return measure_code
-	elif choose_measurecode.lower() == "unemployment rate":
-		measure_code = "0000000003"
-		return measure_code
-	else:
-		print "Invalid data input"
-		measure_code = get_measurecode()	
-
-
-
-def choose_startyear():
-	import datetime
-	thisyear = datetime.datetime.today().year
-	choose_start = raw_input("Choose a startyear > ")
-	if len(choose_start) != 4:
-		print "invaid year"
-		startyear()
-	elif (thisyear - int(choose_start)) > 10: 
-		print "The BLS API only allows for from the last ten years."
-		print "Please choose a year within the last ten years"
-		startyear()
-	else:	
-		start_year = choose_start
-		return start_year
-
-def choose_endyear():
-	import datetime
-	thisyear = datetime.datetime.today().year
-	choose_end = raw_input("Choose a end year > ")
-	if len(choose_end) != 4:
-		print "invaid year"
-		choose_endyear()
-	elif (thisyear - int(choose_end)) > 10: 
-		print "The BLS API only allows for up to ten years worth of data."
-		print "Please choose a year within the last ten years"
-		choose_endyear()
-	else:	
-		end_year = choose_end
-		return end_year
-
-
-
-#Start Engines
 def start()	:
-	from api import get_data
-
-	level = "ST"
-	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
-	print "Warning: county level data is only available as unseasonally adjusted."	
-	seasonal_adj = get_adjustment()
+	#choose state
 	print "Choose which state you want to Get Data for."
-	state = decide_state()
-	state_code = get_state(state)
+	state = vf.decide_state()
+	state_code = str(vf.get_state(state))
+	
+	level = "ST"
+		
+	#Get adjustment value
+	print "Do you want your data to be seasonally adjusted or unseasonally adjusted?"
+	print "Warning: county level data is only available as unseasonally adjusted."
+	seasonal_adj = vf.get_adjustment()
+
 	print "Choose which type of data you want."
 	print """
 	Labor Force
@@ -141,20 +26,42 @@ def start()	:
 	Unemployment
 	Unemployment Rate
 	"""
-	measure_code = get_measurecode()
-	series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code	
+	measure_code = str(vf.get_measurecode())
+	
+	series_id = "LA" + seasonal_adj + level + state_code + "000" + measure_code
 	
 	#set start and end years
-	start_year = choose_startyear()
-	end_year = choose_endyear()
+	start_year = vf.choose_startyear()
+	end_year = vf.choose_endyear()
 
 
 	# the "000" will have to be modified when we add county level choices
 	#Get API call and retrieve data
 	from api import get_data
 	apidata = get_data(series_id,start_year,end_year, state)
-	print apidata
+	return apidata
 
-# Lets Party like we're an unemployment stat!
-print "Welcome to the unemployment stats program!"
-start()
+
+
+def data_output(data):
+		print "Good News! You're data has been returned. I'm happy to show it to you."
+		print "Just tell me how you want it - Table or Line Graph?"
+
+		data_output = raw_input("Choose table or line > ")
+
+		if data_output[0].lower() == "t":
+			print "Ok, here's your data."
+			print data
+		elif data_output[0] == "l" or data_output[0].lower() =="g":
+			from ggplot import *
+
+			plot = ggplot(aes(x='Order', y='Value'), data=data) + \
+    			geom_point(color='black') + \
+    			geom_line(color='green') + \
+    			ggtitle("Unemployment Data") + \
+    			xlab("Month, Year") + \
+    			ylab("Value") 
+    			# scale_x_date(breaks = date_breaks('1 month'), labels=date_format("%B")) + \ - working on adding dates to xaxis
+			print (plot + theme_xkcd())
+			plt.show(1)
+
